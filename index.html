@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Number Line</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="controls" aria-labelledby="controls-title">
+        <div>
+          <p class="eyebrow">Number line explorer</p>
+          <h1 id="controls-title">Tenths and hundredths number line</h1>
+        </div>
+
+        <label class="start-control" for="start-number">
+          Starting number
+          <input id="start-number" type="number" step="1" value="0" />
+        </label>
+
+        <div class="target-controls" aria-label="Arc target numbers">
+          <label for="top-target">
+            Top arc number
+            <input
+              id="top-target"
+              type="number"
+              step="0.01"
+              placeholder="0.6"
+            />
+          </label>
+          <label for="bottom-target">
+            Bottom arc number
+            <input
+              id="bottom-target"
+              type="number"
+              step="0.01"
+              placeholder="0.25"
+            />
+          </label>
+          <div class="button-row">
+            <button id="go-button" class="action-button" type="button">
+              Go
+            </button>
+            <button
+              id="reset-button"
+              class="action-button secondary"
+              type="button"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="toggle-group" aria-label="Tick mark options">
+          <label class="toggle">
+            <input id="tenths-toggle" type="checkbox" />
+            <span>Show tenths</span>
+          </label>
+          <label class="toggle">
+            <input id="hundredths-toggle" type="checkbox" />
+            <span>Show hundredths</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="number-line-card" aria-label="Interactive number line">
+        <div
+          id="number-line"
+          class="number-line"
+          role="img"
+          aria-label="Number line with optional tenths and hundredths tick marks"
+        ></div>
+      </section>
+
+      <section class="selection-panel" aria-live="polite">
+        <strong id="status-message"
+          >Enter two numbers in range, then press Go.</strong
+        >
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
