@@ -68,7 +68,8 @@ function makeArc(svg, value, side) {
   const startX = positionForValue(getStartNumber());
   const endX = positionForValue(value);
   const midX = (startX + endX) / 2;
-  const curveHeight = Math.max(20, Math.abs(endX - startX) * 0.75);
+  const distance = Math.abs(endX - startX);
+  const curveHeight = Math.min(24, Math.max(10, distance * 0.35));
   const axisY = 50;
   const controlY = side === "top" ? axisY - curveHeight : axisY + curveHeight;
   const path = makeSvgElement("path", {
