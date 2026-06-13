@@ -64,6 +64,32 @@ function makeSvgElement(tagName, attributes) {
   return element;
 }
 
+function addArcArrowhead(svg, side) {
+  let defs = svg.querySelector("defs");
+  if (!defs) {
+    defs = makeSvgElement("defs", {});
+    svg.appendChild(defs);
+  }
+
+  const marker = makeSvgElement("marker", {
+    id: `arc-arrowhead-${side}`,
+    markerHeight: 6,
+    markerUnits: "strokeWidth",
+    markerWidth: 6,
+    orient: "auto",
+    refX: 5.4,
+    refY: 3,
+    viewBox: "0 0 6 6",
+  });
+  const arrowhead = makeSvgElement("path", {
+    class: `arc-arrowhead ${side}`,
+    d: "M 0 0 L 6 3 L 0 6 z",
+  });
+
+  marker.appendChild(arrowhead);
+  defs.appendChild(marker);
+}
+
 function makeArc(svg, value, side) {
   const startX = positionForValue(getStartNumber());
   const endX = positionForValue(value);
@@ -75,15 +101,10 @@ function makeArc(svg, value, side) {
   const path = makeSvgElement("path", {
     class: `arc-path ${side}`,
     d: `M ${startX} ${axisY} Q ${midX} ${controlY} ${endX} ${axisY}`,
-  });
-  const endpoint = makeSvgElement("circle", {
-    class: `arc-endpoint ${side}`,
-    cx: endX,
-    cy: axisY,
-    r: 1.4,
+    "marker-end": `url(#arc-arrowhead-${side})`,
   });
 
-  svg.append(path, endpoint);
+  svg.appendChild(path);
 }
 
 function renderArcs() {
@@ -103,6 +124,8 @@ function renderArcs() {
     "aria-hidden": "true",
   });
 
+  addArcArrowhead(svg, "top");
+  addArcArrowhead(svg, "bottom");
   makeArc(svg, activeArcs.top, "top");
   makeArc(svg, activeArcs.bottom, "bottom");
   numberLine.appendChild(svg);

@@ -126,9 +126,10 @@ h1 {
 
 .arc-path {
   fill: none;
-  stroke-width: 5;
-  stroke-dasharray: 1.8 1.8;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
   stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
 }
 
 .arc-path.top {
@@ -139,16 +140,11 @@ h1 {
   stroke: var(--arc-bottom);
 }
 
-.arc-endpoint {
-  stroke: white;
-  stroke-width: 3;
-}
-
-.arc-endpoint.top {
+.arc-arrowhead.top {
   fill: var(--arc-top);
 }
 
-.arc-endpoint.bottom {
+.arc-arrowhead.bottom {
   fill: var(--arc-bottom);
 }
 
